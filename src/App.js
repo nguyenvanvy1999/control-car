@@ -1,25 +1,21 @@
-import logo from './logo.svg';
 import './App.css';
-
+import { CustomButton } from './components/buttons/button';
+import { CustomSlider } from './components/slider/slider';
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	return (
+		<div>
+			<CustomButton name={'Tiến'} onClick={'F'} />
+			<CustomButton name={'Lùi'} onClick={'B'} />
+			<CustomButton name={'Trái'} onClick={'L'} />
+			<CustomButton name={'Phải'} onClick={'R'} />
+			<CustomButton name={'Tiến Trái'} onClick={'G'} />
+			<CustomButton name={'Tiến Phải'} onClick={'I'} />
+			<CustomButton name={'Lùi trái'} onClick={'H'} />
+			<CustomButton name={'Lùi Phải'} onClick={'J'} />
+			<CustomButton name={'Dừng'} onClick={'S'} />
+			<CustomSlider />
+		</div>
+	);
 }
 
 export default App;
