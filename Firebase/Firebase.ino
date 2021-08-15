@@ -5,8 +5,8 @@
 
 #define FIREBASE_HOST "projectdemo-a4fe4-default-rtdb.asia-southeast1.firebasedatabase.app"
 #define FIREBASE_AUTH "5yDT06F36Ohnax4rYAspshKXg4zbGzQXqtMlQ5Nq"
-#define WIFI_SSID "TUAN VY"
-#define WIFI_PASSWORD "tuanvytuan"
+#define WIFI_SSID "Longdeppzai"
+#define WIFI_PASSWORD "anhyeuem11226688"
 
 #define ENA 14  //GPIO14(D5) Chân dùng để bật/ set tốc độ cho motor bên Phải
 #define ENB 12  // GPIO12(D6) bật/set tốc độ cho motor bên phải
@@ -19,6 +19,8 @@
 String path = "/";
 FirebaseJson json;
 FirebaseData firebaseData;
+int speedCar;
+const int speed_Coeff = 800;
 
 void setup() {
   // pinMode các chân là output
@@ -143,68 +145,48 @@ void loop() {
   String control;
   if (Firebase.getString(firebaseData, path + "/control")) control = firebaseData.stringData();
   Serial.println(control);
-  switch (control) {
-    case "F":
-      goAhead();
-      break;
-    case "B":
-      goBack();
-      break;
-    case "L":
-      goLeft();
-      break;
-    case "R":
-      goRight();
-      break;
-    case "I":
-      goAheadRight();
-      break;
-    case "G":
-      goAheadLeft();
-      break;
-    case "J":
-      goBackRight();
-      break;
-    case "H":
-      goBackLeft();
-      break;
-    case "S":
-      stopRobot();
-      break;
-  }
+	if (control == "F") {
+		goAhead();
+	} else if (control == "B") {
+		goBack();
+	} else if (control == "L") {
+		goLeft();
+	} else if (control == "R") {
+		goRight();
+	} else if (control == "I") {
+		goAheadRight();
+	} else if (control == "G") {
+		goAheadLeft();
+	} else if (control == "J") {
+		goBackRight();
+	} else if (control == "H") {
+		goBackLeft();
+	} else {
+		stopRobot();
+	}
+
 	String speed;
   if (Firebase.getString(firebaseData, path + "/speed")) speed = firebaseData.stringData();
   Serial.println(speed);
-	switch (speed) {
-    case "0":
-      speedCar = 400;
-      break;
-    case "1":
-      speedCar = 470;
-      break;
-    case "2":
-      speedCar = 540;
-      break;
-    case "=3":
-      speedCar = 610;
-      break;
-    case "4":
-      speedCar = 680;
-      break;
-    case "5":
-      speedCar = 750;
-      break;
-    case "6":
-      speedCar = 820;
-      break;
-    case "7":
-      speedCar = 890;
-      break;
-    case "8":
-      speedCar = 960;
-      break;
-    case "9":
-      speedCar = 1023;
-      break;
-  }
+	if (speed == "0") {
+		speedCar = 400;
+	} else if (speed == "1") {
+		speedCar = 470;
+	} else if (speed == "2") {
+		speedCar = 540;
+	} else if (speed == "3") {
+		speedCar = 610;
+	} else if (speed == "4") {
+		speedCar = 680;
+	} else if (speed == "5") {
+		speedCar = 750;
+	} else if (speed == "6") {
+		speedCar = 820;
+	} else if (speed == "7") {
+		speedCar = 890;
+	} else if (speed == "8") {
+		speedCar = 960;
+	} else {
+		speedCar = 1023;
+	}
 }
