@@ -29,3 +29,12 @@ export const writeControl = async (control) => {
 export const writeSpeed = async (speed) => {
 	await realtimeDB.ref('speed/').set(speed);
 };
+
+export const readPpm = () => {
+	let ppm = 0;
+	realtimeDB.ref('ppm/').on('value', (snapshot) => {
+		ppm = snapshot.val();
+		console.log(ppm);
+	});
+	return ppm;
+};

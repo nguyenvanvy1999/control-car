@@ -23,7 +23,7 @@ code {
 	flex-direction: column;
 }
 
-.main2,
+.button,
 .slider,
 .text {
 	display: flex;
