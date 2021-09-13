@@ -14,7 +14,7 @@
 #define IN_2 13 // GPIO13(D7)  Điều khiển trạng thái của motor Phải
 #define IN_3 2  // GPIO2(D4) Điều khiển trạng thái của motor Trái
 #define IN_4 0  // GPIO0(D3) Điều khiển trạng thái của motor Trái
-
+#define MQ_PIN 10
 
 String path = "/";
 FirebaseJson json;
@@ -30,6 +30,7 @@ void setup() {
   pinMode(IN_2, OUTPUT);
   pinMode(IN_3, OUTPUT);
   pinMode(IN_4, OUTPUT);
+	pinMode(MQ_PIN, INPUT);
 
   Serial.begin(9600);
   WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
@@ -142,6 +143,8 @@ void stopRobot()
 }
 
 void loop() {
+	float LPG = analogRead(MQ_PIN);
+	Firebase.setFloat(firebaseData, path + "/control", LPG);
   String control;
   if (Firebase.getString(firebaseData, path + "/control")) control = firebaseData.stringData();
   Serial.println(control);

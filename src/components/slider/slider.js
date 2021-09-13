@@ -6,7 +6,6 @@ import { writeSpeed } from '../../tools/firebase';
 
 const useStyles = makeStyles({
 	root: {
-		margin: 200,
 		width: 300,
 		display: 'inline-block',
 	},
