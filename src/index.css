@@ -24,7 +24,10 @@ code {
 }
 
 .button,
-.slider,
+.slider {
+	display: flex;
+	justify-content: center;
+}
 .text {
 	display: flex;
 	justify-content: center;

@@ -29,7 +29,16 @@ function App() {
 				<CustomSlider />
 			</div>
 			<div className="text">
-				<Text />
+				<Text text1={'Nhiệt độ: 20'} text2={'C'} />
+			</div>
+			<div className="text">
+				<Text text1={'Khí Gas: 50'} text2={'ppm'} />
+			</div>
+			<div className="text">
+				<Text text1={'Khói: 50'} text2={'ppm'} />
+			</div>
+			<div className="text">
+				<Text text1={'Khí CO: 50'} text2={'ppm'} />
 			</div>
 		</div>
 	);

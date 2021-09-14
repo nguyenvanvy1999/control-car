@@ -1,7 +1,15 @@
 #include <ESP8266WiFi.h>
 #include "FirebaseESP8266.h"
 #include <ArduinoJson.h>
-
+#include <stdio.h>
+#include <string.h>
+#include <inttypes.h>
+#include "lm35.h"
+#if defined(ARDUINO) && ARDUINO >= 100
+#include "Arduino.h"
+#else
+#include "WProgram.h"
+#endif
 
 #define FIREBASE_HOST "projectdemo-a4fe4-default-rtdb.asia-southeast1.firebasedatabase.app"
 #define FIREBASE_AUTH "5yDT06F36Ohnax4rYAspshKXg4zbGzQXqtMlQ5Nq"
@@ -142,9 +150,24 @@ void stopRobot()
   analogWrite(ENB, speedCar);
 }
 
+lm35::lm35(int pin) {
+  _pin = pin;
+}
+void lm35::MeasureTemp(void) {
+  val = analogRead(_pin);
+  dat = (val*500)>>10;
+  TempInCelcius = dat;
+  fah = (dat * (9/5)) + 32;
+  TempInFahrenheit = fah;
+}
+
 void loop() {
 	float LPG = analogRead(MQ_PIN);
-	Firebase.setFloat(firebaseData, path + "/control", LPG);
+	Firebase.setFloat(firebaseData, path + "/LPG", LPG);
+
+	float temp = MeasureTemp();
+	Firebase.setFloat(firebaseData, path + "/Temp", temp);
+
   String control;
   if (Firebase.getString(firebaseData, path + "/control")) control = firebaseData.stringData();
   Serial.println(control);
