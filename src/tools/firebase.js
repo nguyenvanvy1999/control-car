@@ -34,7 +34,6 @@ export const readPpm = () => {
 	let ppm = 0;
 	realtimeDB.ref('ppm/').on('value', (snapshot) => {
 		ppm = snapshot.val();
-		console.log(ppm);
 	});
 	return ppm;
 };
